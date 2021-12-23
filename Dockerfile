@@ -1,6 +1,12 @@
 # building ruby on alpine base
 FROM ruby:3.0.0-alpine
-# creating work dir on the container
-WORKDIR /ROR_Course
-# copying local file to container file.
-COPY . /ROR_Course/
+# adding bash
+RUN apk update && apk add bash
+RUN apk add --no-cache bash
+# Will need to create Docker volume , the host volume type.
+# docker run -it -v $(pwd):/usr/src/ror_course
+
+#specifying working directory.
+WORKDIR /usr/src/ror_course
+
+ENTRYPOINT [ "bash" ]
